@@ -3,6 +3,8 @@ Drag = {
 		var obj = document.getElementById(options.selector);
 		var root = document.getElementById(options.root) || document.body;
 		if (!obj) return;
+        obj.style.cursor = 'move';
+        obj.mode = options.mode || 'bound';
 		//obj.onmousedown = this.start;
 		obj.addEventListener('mousedown', this.start, false);
 		obj.root = root;
@@ -46,11 +48,19 @@ Drag = {
 
 			var obj_left = e.clientX - obj.x,
 				obj_top = e.clientY - obj.y;
-			if (obj_left > bound.left && obj_left < bound.right &&
-				obj_top > bound.top && obj_top < bound.bottom) {
-				obj.style.left = obj_left + "px";
+
+            // 自由移动模式
+            if (obj.mode === 'free') {
+                obj.style.left = obj_left + "px";
 				obj.style.top = obj_top + "px";
-			}
+            }
+            if (obj.mode === 'bound') {
+                if (obj_left > bound.left && obj_left < bound.right &&
+                    obj_top > bound.top && obj_top < bound.bottom) {
+                    obj.style.left = obj_left + "px";
+                    obj.style.top = obj_top + "px";
+                }
+            }
 			obj.onDrag();
 		}
 	},
