@@ -6,4 +6,4 @@ Provides a global object *Drag*
  param = {
   selector: 'yourDragId',
   root: 'boundId'
-}'
+}`
