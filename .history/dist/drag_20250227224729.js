@@ -10,9 +10,7 @@ Drag = {
 		obj.root = root;
 		obj.onDragStart = options.dragStart || new Function();
 		obj.onDrag = options.onDrag || new Function();
-		// obj.onDragEnd = options.onDragEnd || new Function();
-		obj.onDragEnd = options.onDragEnd || '';
-		console.log('测试commit');
+		obj.onDragEnd = options.onDragEnd || new Function();
 	},
 	start: function (e) { //此时的this是handler
 		//if (this.onDragStart() == 'stop') return;
